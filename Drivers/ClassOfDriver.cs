@@ -8,8 +8,8 @@ namespace Drivers
 {
     public enum ClassOfDriver
     {
-        first = 1,
-        second,
-        third
+        first = 10,
+        second = 12,
+        third = 15
     }
 }

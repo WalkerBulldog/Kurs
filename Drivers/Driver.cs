@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Enterprice;
+using WayBills;
 
 namespace Drivers
 {
@@ -13,27 +13,22 @@ namespace Drivers
         private string fio { get; }
         private ClassOfDriver qualification { get; }
         public double Distance { get; protected set; }
-        private double Money { get; }
 
 
-        public Driver(int id,string fio, ClassOfDriver qualification)
+        public Driver(int Id, string fio, ClassOfDriver qualification)
         {
-            this.Id = id;
+            this.Id = Id;
             this.fio = fio;
             this.qualification = qualification;
         }
-        public bool UpdateDistance(List<Waybill> list)
+        public double GetDistance(WaybillList WBList)
         {
-            double distance = 0;
-            if (list == null)
-                return false;
-            foreach (Waybill wb in list)
-                if (wb.GetFullName() == fio)
-                    distance += wb.GetDistance();
-            Distance = distance;
-            return true;
+            return WBList.GetFullDistanceForDriverId(Id);
         }
-
+        public double GetSalary(WaybillList WBList)
+        {
+            return 100 * GetDistance(WBList) * (int)qualification;
+        }
 
 
     }

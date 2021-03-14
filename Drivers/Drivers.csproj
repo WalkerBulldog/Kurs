@@ -47,9 +47,9 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Enterprice\Enterprice.csproj">
+    <ProjectReference Include="..\Enterprice\WayBills.csproj">
       <Project>{71dfaa0a-f9f9-4acc-90d5-27bd8ada27af}</Project>
-      <Name>Enterprice</Name>
+      <Name>WayBills</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

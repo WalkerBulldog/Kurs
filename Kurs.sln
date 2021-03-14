@@ -5,7 +5,7 @@ VisualStudioVersion = 16.0.30611.23
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cars", "Kurs\Cars.csproj", "{EF255B74-E920-4FB9-909A-63A1551B800E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Enterprice", "Enterprice\Enterprice.csproj", "{71DFAA0A-F9F9-4ACC-90D5-27BD8ADA27AF}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WayBills", "Enterprice\WayBills.csproj", "{71DFAA0A-F9F9-4ACC-90D5-27BD8ADA27AF}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drivers", "Drivers\Drivers.csproj", "{8D293047-39CA-4C86-9BBA-F23E23ADF03A}"
 EndProject
