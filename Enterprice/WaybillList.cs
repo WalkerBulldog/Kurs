@@ -9,14 +9,15 @@ namespace WayBills
     public class WaybillList
     {
         private List<Waybill> Waybills = new List<Waybill>();
-
+        public Waybill this[int index] => Waybills[index];
+        public double Count => Waybills.Count;
         public void Add(Waybill WB)
         {
             Waybills.Add(WB);
         }
-        public void Remove(Waybill WB)
+        public bool Remove(Waybill WB)
         {
-            Waybills.Remove(WB);
+            return Waybills.Remove(WB);
         }
         public void Edit(Waybill WB, string NewFullName)
         {
@@ -41,7 +42,7 @@ namespace WayBills
             double sum = 0;
             foreach (Waybill wb in Waybills)
                 if (wb.DriverId == Id)
-                    sum += wb.GetDistance();
+                    sum += wb.Distance;
             return sum;
         }
         public double GetFullDistanceForCarId(int Id)
@@ -49,14 +50,14 @@ namespace WayBills
             double sum = 0;
             foreach (Waybill wb in Waybills)
                 if (wb.CarId == Id)
-                    sum += wb.GetDistance();
+                    sum += wb.Distance;
             return sum;
         }
         public List<Waybill> GetWaybills(string fio)
         {
             List<Waybill> wbl = new List<Waybill>();
             foreach (Waybill wb in Waybills)
-                if (wb.GetFullName() == fio)
+                if (wb.FullName == fio)
                     wbl.Add(wb);
             return wbl;
         }
@@ -64,7 +65,7 @@ namespace WayBills
         {
             List<Waybill> wbl = new List<Waybill>();
             foreach (Waybill wb in Waybills)
-                if (wb.GetDate() >= firstDate && wb.GetDate() <= secondDate)
+                if (wb.Date >= firstDate && wb.Date <= secondDate)
                     wbl.Add(wb);
             return wbl;
         }
@@ -83,6 +84,13 @@ namespace WayBills
                 if (wb.DriverId == DriverId)
                     wbl.Add(wb);
             return wbl;
+        }
+        public override string ToString()
+        {
+            string str = "";
+            foreach (Waybill wb in Waybills)
+                str += wb.ToString();
+            return str;
         }
     }
 }

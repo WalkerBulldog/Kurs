@@ -22,5 +22,19 @@ namespace Drivers
         {
             return List.Remove(dr);
         }
+        public Driver GetDriver(int id)
+        {
+            foreach (Driver driver in List)
+                if (driver.Id == id)
+                    return driver;
+            return null;
+        }
+        public override string ToString()
+        {
+            string str = "";
+            foreach (Driver wb in List)
+                str += wb.ToString();
+            return str;
+        }
     }
 }

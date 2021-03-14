@@ -8,9 +8,9 @@ namespace WayBills
 {
     public class Waybill
     {
-        private string FullName;
-        private double Distance;
-        private DateTime Date;
+        public string FullName { get; private set; }
+        public double Distance { get; private set; }
+        public DateTime Date { get; private set; }
         public int CarId { get; }
         public int DriverId { get; }
         public Waybill(string FIO, double Distance, DateTime Date, int CarId, int DriverId)
@@ -25,9 +25,6 @@ namespace WayBills
             this.DriverId = DriverId;
             this.Date = Date;
         }
-        public string GetFullName() => FullName;
-        public double GetDistance() => Distance;
-        public DateTime GetDate() => Date;
 
         public bool Edit(string fio)
         {
@@ -56,6 +53,10 @@ namespace WayBills
             if (Distance <= 0)
                 return false;
             return true;
+        }
+        public override string ToString()
+        {
+            return "Водитель: " + FullName + "\nДистанция: " + Distance + "\nДата: " + Date.ToString() + "\nНомер машины: " + CarId;
         }
     }
 }

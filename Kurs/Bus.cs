@@ -11,10 +11,23 @@ namespace Cars
         public double Capacity { get; }
 
         public int PassCapacity { get; }
-        public Bus(int id, string Mark, double GasUse, double Capacity, int PassCapacity) : base(id, Mark, GasUse)
+        public Bus(int id, double GasUse, double Capacity, int PassCapacity) : base(id, "BUS", GasUse)
         {
             this.PassCapacity = PassCapacity;
             this.Capacity = Capacity;
+        }
+        public override double Service(double Distance)
+        {
+            if (Distance <= 100)
+                return 1000;
+            else if (Distance <= 250)
+                return 2000;
+            else
+                return 3000;
+        }
+        public override string ToString()
+        {
+            return TypeOfCar + ", " + GasUse + "л / 100 км, " + Capacity + "кг, " + PassCapacity + "чел.";
         }
     }
 }

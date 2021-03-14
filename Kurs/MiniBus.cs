@@ -13,10 +13,23 @@ namespace Cars
         int IPassangers.PassCapacity =>  passcapacity;
 
 
-        public MiniBus(int id, string Mark, double GasUse, int passcapacity)
-            : base(id, Mark, GasUse)
+        public MiniBus(int id, double GasUse, int passcapacity)
+            : base(id, "VAN", GasUse)
         {
             this.passcapacity = passcapacity;
+        }
+        public override double Service(double Distance)
+        {
+            if (Distance <= 100)
+                return 500;
+            else if (Distance <= 250)
+                return 1000;
+            else
+                return 1500;
+        }
+        public override string ToString()
+        {
+            return TypeOfCar + ", " + GasUse + "л / 100 км, " + passcapacity + "чел.";
         }
     }
 }

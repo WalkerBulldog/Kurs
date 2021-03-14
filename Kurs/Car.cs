@@ -10,12 +10,12 @@ namespace Cars
     public abstract class Car
     {
         public int id { get; }
-        public string Mark { get; }
+        public string TypeOfCar { get; }
         public double GasUse { get; }
        
         public Car(int id, string Mark, double GasUse)
         {
-            this.Mark = Mark;
+            this.TypeOfCar = Mark;
             this.GasUse = GasUse;
             this.id = id;
         }
@@ -23,8 +23,8 @@ namespace Cars
         {
             return WBList.GetFullDistanceForCarId(id);
         }
-
-
+        public abstract double Service(double Distance);
+        public override abstract string ToString();
 
     }
 }

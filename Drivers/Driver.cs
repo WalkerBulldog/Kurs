@@ -12,7 +12,6 @@ namespace Drivers
         public int Id { get; }
         private string fio { get; }
         private ClassOfDriver qualification { get; }
-        public double Distance { get; protected set; }
 
 
         public Driver(int Id, string fio, ClassOfDriver qualification)
@@ -29,7 +28,11 @@ namespace Drivers
         {
             return 100 * GetDistance(WBList) * (int)qualification;
         }
-
+        public double GetSalary(Waybill WB)
+        {
+            return 100 * WB.Distance * (int)qualification;
+        }
+        public override string ToString() => fio + ", qualification - " + qualification.ToString();
 
     }
 }

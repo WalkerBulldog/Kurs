@@ -22,5 +22,19 @@ namespace Cars
         {        
            return List.Remove(car);
         }
+        public Car GetCar(int id)
+        {
+            foreach (Car cr in List)
+                if (cr.id == id)
+                    return cr;
+            return null;
+        }
+        public override string ToString()
+        {
+            string str = "";
+            foreach (Car wb in List)
+                str += wb.ToString();
+            return str;
+        }
     }
 }

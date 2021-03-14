@@ -11,6 +11,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Drivers", "Drivers\Drivers.
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Users", "Users\Users.csproj", "{F2EF82C8-41C1-401C-83A8-3BFC07953B7F}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Accounting", "Accounting\Accounting.csproj", "{DA7233B1-EB61-4C09-9E1B-DBE9F2B518F5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "TestConsole", "TestConsole\TestConsole.csproj", "{A9914375-A343-4262-8D82-E522869E83BB}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -33,6 +37,14 @@ Global
 		{F2EF82C8-41C1-401C-83A8-3BFC07953B7F}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F2EF82C8-41C1-401C-83A8-3BFC07953B7F}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F2EF82C8-41C1-401C-83A8-3BFC07953B7F}.Release|Any CPU.Build.0 = Release|Any CPU
+		{DA7233B1-EB61-4C09-9E1B-DBE9F2B518F5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{DA7233B1-EB61-4C09-9E1B-DBE9F2B518F5}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{DA7233B1-EB61-4C09-9E1B-DBE9F2B518F5}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{DA7233B1-EB61-4C09-9E1B-DBE9F2B518F5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9914375-A343-4262-8D82-E522869E83BB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9914375-A343-4262-8D82-E522869E83BB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9914375-A343-4262-8D82-E522869E83BB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9914375-A343-4262-8D82-E522869E83BB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
