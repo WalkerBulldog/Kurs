@@ -11,29 +11,12 @@ namespace Cars
     {
         private readonly int passcapacity;
         int IPassangers.PassCapacity =>  passcapacity;
-        public WaybillList Waybills = new WaybillList(); // Как сделать это наследуемым, если оно изначально должно быть пустым
-        private double Service
-        {
-            get
-            {
-                if (Distance < 10000)
-                    return 100;
-                else if (Distance < 50000)
-                    return 500;
-                else return 1000;
-            }
-        }
 
 
-        public MiniBus(string Mark, double GasUse, double Distance, int passcapacity) 
-            : base(Mark, GasUse, Distance)
+        public MiniBus(int id, string Mark, double GasUse, int passcapacity)
+            : base(id, Mark, GasUse)
         {
             this.passcapacity = passcapacity;
         }
-
-        public override double GetFullDistance(string fio) => Waybills.GetFullDistance(fio);
-
-
-
     }
 }

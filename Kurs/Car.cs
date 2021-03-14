@@ -9,17 +9,22 @@ namespace Cars
 {
     public abstract class Car
     {
+        public int id { get; }
         public string Mark { get; }
         public double GasUse { get; }
-        public double Distance { get; protected set; }
        
-        public Car(string Mark, double GasUse, double Distance)
+        public Car(int id, string Mark, double GasUse)
         {
             this.Mark = Mark;
             this.GasUse = GasUse;
-            this.Distance = Distance;
+            this.id = id;
         }
-        public abstract double GetFullDistance(string fio);
+        public double GetDistance(WaybillList WBList)
+        {
+            return WBList.GetFullDistanceForCarId(id);
+        }
+
+
 
     }
 }

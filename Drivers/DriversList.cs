@@ -9,13 +9,18 @@ namespace Drivers
     public class DriversList
     {
         private List<Driver> List = new List<Driver>();
-        public void Add(Driver dr)
+        public bool Add(Driver dr)
         {
+            foreach (Driver driver in List)
+                if (driver.Id == dr.Id)
+                    return false;
+
             List.Add(dr);
+            return true;
         }
-        public void Remove(Driver dr)
+        public bool Remove(Driver dr)
         {
-            List.Remove(dr);
+            return List.Remove(dr);
         }
     }
 }

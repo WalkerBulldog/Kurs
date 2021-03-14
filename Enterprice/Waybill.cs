@@ -10,7 +10,10 @@ namespace Enterprice
     {
         private string FullName;
         private double Distance;
-        public Waybill(string FIO, double Distance)
+        private DateTime Date;
+        public int CarId { get; }
+        public int DriverId { get; }
+        public Waybill(string FIO, double Distance, DateTime Date, int CarId, int DriverId)
         {
             if (!CheckDistance(Distance))
                 throw new Exception("Дистанция не может быть меньше либо равна нулю.");
@@ -18,9 +21,13 @@ namespace Enterprice
             if (FIO == null)
                 throw new Exception("Введите имя");
             FullName = FIO;
+            this.CarId = CarId;
+            this.DriverId = DriverId;
+            this.Date = Date;
         }
         public string GetFullName() => FullName;
         public double GetDistance() => Distance;
+        public DateTime GetDate() => Date;
 
         public bool Edit(string fio)
         {
@@ -34,6 +41,13 @@ namespace Enterprice
             if (distance <= 0)
                 return false;
             Distance = distance;
+            return true;
+        }
+        public bool Edit(DateTime date)
+        {
+            if (date == null)
+                return false;
+            Date = date;
             return true;
         }
 

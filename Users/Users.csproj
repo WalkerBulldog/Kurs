@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{8D293047-39CA-4C86-9BBA-F23E23ADF03A}</ProjectGuid>
+    <ProjectGuid>{F2EF82C8-41C1-401C-83A8-3BFC07953B7F}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Drivers</RootNamespace>
-    <AssemblyName>Drivers</AssemblyName>
+    <RootNamespace>Users</RootNamespace>
+    <AssemblyName>Users</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <Deterministic>true</Deterministic>
@@ -41,16 +41,9 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="DriversList.cs" />
-    <Compile Include="ClassOfDriver.cs" />
-    <Compile Include="Driver.cs" />
+    <Compile Include="Operator.cs" />
+    <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\Enterprice\Enterprice.csproj">
-      <Project>{71dfaa0a-f9f9-4acc-90d5-27bd8ada27af}</Project>
-      <Name>Enterprice</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

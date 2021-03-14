@@ -3,26 +3,24 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Enterprice;
 
 namespace Cars
 {
     public class CarList
     {
         private List<Car> List = new List<Car>();
-        public void Add(Car car)
+        public bool Add(Car Newcar)
         {
-            List.Add(car);
-        }
-        public void Remove(Car car)
-        {
-            List.Remove(car);
-        }
-        public double GetFullDistance(string fio)
-        {
-            double sum = 0;
             foreach (Car car in List)
-                sum += car.GetFullDistance(fio);
-            return sum;
+                if (Newcar.id == car.id)
+                    return false;
+            List.Add(Newcar);
+            return true;
+        }
+        public bool Remove(Car car)
+        {        
+           return List.Remove(car);
         }
     }
 }
