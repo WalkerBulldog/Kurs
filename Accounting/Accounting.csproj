@@ -57,10 +57,6 @@
       <Project>{ef255b74-e920-4fb9-909a-63a1551b800e}</Project>
       <Name>Cars</Name>
     </ProjectReference>
-    <ProjectReference Include="..\Users\Users.csproj">
-      <Project>{f2ef82c8-41c1-401c-83a8-3bfc07953b7f}</Project>
-      <Name>Users</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

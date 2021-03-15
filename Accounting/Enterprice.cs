@@ -62,7 +62,7 @@ namespace Accounting
                 cost += GetCost(WaybillList[i]);
             return cost;
         }
-        public string GetProfitDrivers(DateTime dateBottom, DateTime dateUp, Car car)
+        public string GetMostProfitDriver(DateTime dateBottom, DateTime dateUp, Car car)
         {
             List<Waybill> WBList = WaybillList.GetWaybills(dateBottom, dateUp);
             List<double> ProfitList = new List<double>();

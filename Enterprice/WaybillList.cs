@@ -87,10 +87,10 @@ namespace WayBills
         }
         public override string ToString()
         {
-            string str = "";
+            StringBuilder str = new StringBuilder("");
             foreach (Waybill wb in Waybills)
-                str += wb.ToString();
-            return str;
+                str.Append( "\n" + wb.ToString());
+            return str.ToString();
         }
     }
 }

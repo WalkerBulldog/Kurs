@@ -16,37 +16,40 @@ namespace TestConsole
             
             while (true)
             {
-                while(true)
-                {
+                
+                
                     Console.WriteLine("\tМеню");
                     Console.WriteLine("0. Выйти.");
                     Console.WriteLine("1. Добавить водителя.");
                     Console.WriteLine("2. Добавить машину.");
                     Console.WriteLine("3. Добавить путевой лист.");
-                    Console.WriteLine("4. Вывод.");
-                    if (!int.TryParse(Console.ReadLine(), out int choise))
-                        Console.WriteLine("Ошибка! Введите номер варианта меню.");
-                    else if (choise == 1)
-                        if (AddDriver())
-                            Console.WriteLine("Успешно!");
-                        else
-                            Console.WriteLine("Ошибка!");
-                    else if (choise == 2)
-                        if (AddCar())
-                            Console.WriteLine("Успешно!");
-                        else
-                            Console.WriteLine("Ошибка!");
-                    else if (choise == 3)
-                        if (AddWayBill())
-                            Console.WriteLine("Успешно!");
-                        else
-                            Console.WriteLine("Ошибка!");
-                    else if (choise == 4)
-                        ShowAllInfo();
+                    Console.WriteLine("4. Вывод всего.");
+                    Console.WriteLine("5. Вывод затрат по всем рейсам.");
+                if (!int.TryParse(Console.ReadLine(), out int choise))
+                    Console.WriteLine("Ошибка! Введите номер варианта меню.");
+                else if (choise == 1)
+                    if (AddDriver())
+                        Console.WriteLine("Успешно!");
+                    else
+                        Console.WriteLine("Ошибка!");
+                else if (choise == 2)
+                    if (AddCar())
+                        Console.WriteLine("Успешно!");
+                    else
+                        Console.WriteLine("Ошибка!");
+                else if (choise == 3)
+                    if (AddWayBill())
+                        Console.WriteLine("Успешно!");
+                    else
+                        Console.WriteLine("Ошибка!");
+                else if (choise == 4)
+                    ShowAllInfo();
+                else if (choise == 5)
+                    GetCostOfAll();
 
-                    else if (choise == 0)
-                        break;
-                }
+                else if (choise == 0)
+                    break;
+                
 
             }
         }
@@ -100,6 +103,14 @@ namespace TestConsole
             Console.WriteLine("Список путевых листов");
             Console.WriteLine(factory.WaybillList.ToString());
 
+        }
+        public void GetCostOfAll()
+        {
+            for (int i=0; i< factory.WaybillList.Count; i++)
+            {
+                Console.WriteLine(factory.WaybillList[i].ToString() + "\nЗатраты: " + factory.GetCost(factory.WaybillList[i]));
+            }
+            Console.WriteLine("Итого: " + factory.GetFullCost());
         }
     }
 }
