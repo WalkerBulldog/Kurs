@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -9,6 +10,8 @@ namespace Drivers
     public class DriversList
     {
         private List<Driver> List = new List<Driver>();
+
+
         public bool Add(Driver dr)
         {
             foreach (Driver driver in List)
@@ -29,12 +32,29 @@ namespace Drivers
                     return driver;
             return null;
         }
+        public Driver GetDriver(string Name)
+        {
+            foreach (Driver driver in List)
+                if (driver.Name == Name)
+                    return driver;
+            return null;
+        }
         public override string ToString()
         {
             string str = "";
             foreach (Driver wb in List)
                 str += wb.ToString();
             return str;
+        }
+
+        public bool MoveNext()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void Reset()
+        {
+            throw new NotImplementedException();
         }
     }
 }

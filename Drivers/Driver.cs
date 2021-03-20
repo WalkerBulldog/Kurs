@@ -10,15 +10,15 @@ namespace Drivers
     public class Driver
     {
         public int Id { get; }
-        private string fio { get; }
+        public string Name { get; }
         private ClassOfDriver qualification { get; }
 
 
-        public Driver(int Id, string fio, ClassOfDriver qualification)
+        public Driver(int Id, string Name, ClassOfDriver Qualification)
         {
             this.Id = Id;
-            this.fio = fio;
-            this.qualification = qualification;
+            this.Name = Name;
+            this.qualification = Qualification;
         }
         public double GetDistance(WaybillList WBList)
         {
@@ -26,13 +26,13 @@ namespace Drivers
         }
         public double GetSalary(WaybillList WBList)
         {
-            return 100 * GetDistance(WBList) * (int)qualification;
+            return 100 * GetDistance(WBList) * (double)qualification;
         }
         public double GetSalary(Waybill WB)
         {
-            return 100 * WB.Distance * (int)qualification;
+            return 100 * WB.Distance * (double)qualification;
         }
-        public override string ToString() => fio + ", qualification - " + qualification.ToString();
+        public override string ToString() => Name + ", qualification - " + qualification.ToString();
 
     }
 }

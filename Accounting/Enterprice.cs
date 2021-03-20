@@ -13,20 +13,20 @@ namespace Accounting
     {
         public DriversList driversList { get; private set; }
         public CarList carList { get; private set; }
-        public WaybillList WaybillList { get; private set; }
-        private double FuelCost = 1.9;
+        public WaybillList waybillList { get; private set; }
+        private double fuelCost = 1.9;
 
         public Enterprice(DriversList driversList, CarList carList, WaybillList waybillList)
         {
             this.carList = carList;
             this.driversList = driversList;
-            this.WaybillList = waybillList;
+            this.waybillList = waybillList;
         }
         public Enterprice()
         {
             driversList = new DriversList();
             carList = new CarList();
-            WaybillList = new WaybillList();
+            waybillList = new WaybillList();
         }
         public bool AddDriver(int id, string FIO, ClassOfDriver qualification)
         {
@@ -44,36 +44,50 @@ namespace Accounting
         {
             return carList.Add(new MiniBus(id, GasUse, pc));
         }
-        public bool AddWayBill(string fn, double dist, DateTime dt, int carid, int drid)
+        public bool AddWayBill(string driverName, double distance, DateTime date, int carid, int driverid)
         {
-            WaybillList.Add(new Waybill(fn, dist, dt, carid, drid));
+            waybillList.Add(new Waybill(driverName, distance, date, carid, driverid));
             return true;
+        }
+        public bool RemoveCar(Car car)
+        {
+            return carList.Remove(car);
+        }
+        public bool RemoveWayBill(Waybill wb)
+        {
+            return waybillList.Remove(wb);
         }
 
         public double GetCost(Waybill WB)
         {
-            return WB.Distance * carList.GetCar(WB.CarId).GasUse * FuelCost + driversList.GetDriver(WB.DriverId).GetSalary(WB) + carList.GetCar(WB.CarId).Service(WB.Distance);
+            return WB.Distance * carList.GetCar(WB.CarId).GasUse * fuelCost + driversList.GetDriver(WB.DriverId).GetSalary(WB) + carList.GetCar(WB.CarId).Service(WB.Distance);
         }
         public double GetProfit(Waybill WB) => GetCost(WB) * 1.2;
         public double GetFullCost()
         {
             double cost = 0;
-            for (int i = 0; i < WaybillList.Count; i++)
-                cost += GetCost(WaybillList[i]);
+            for (int i = 0; i < waybillList.Count; i++)
+                cost += GetCost(waybillList[i]);
             return cost;
         }
         public string GetMostProfitDriver(DateTime dateBottom, DateTime dateUp, Car car)
         {
-            List<Waybill> WBList = WaybillList.GetWaybills(dateBottom, dateUp);
+            List<Waybill> WBList = waybillList.GetWaybills(dateBottom, dateUp);
             List<double> ProfitList = new List<double>();
             foreach (Waybill WB in WBList)
                 if (car.TypeOfCar != carList.GetCar(WB.CarId).TypeOfCar)
                     WBList.Remove(WB);
-            foreach (Waybill WB in WBList)
-            {
+            foreach (Waybill WB in WBList)  
                 ProfitList.Add(GetProfit(WB));
-            }
             return driversList.GetDriver(ProfitList.IndexOf(ProfitList.Max())).ToString() + " " + ProfitList.Max();
+        }
+        
+        public string GetInfo(string UserName)
+        {
+            string driverInfo = driversList.GetDriver(UserName).ToString();
+            string waybillsInfo = waybillList.GetFullDistanceForDriverId(driversList.GetDriver(UserName).Id).ToString();
+            string salaryInfo = driversList.GetDriver(UserName).GetSalary(waybillList).ToString();
+            return driverInfo + "\nОбщий километраж: " + waybillsInfo + "\n Всего заработано: " + salaryInfo;
         }
     }
 }

@@ -101,14 +101,14 @@ namespace TestConsole
             Console.WriteLine("Список машин: ");
             Console.WriteLine(factory.carList.ToString());
             Console.WriteLine("Список путевых листов");
-            Console.WriteLine(factory.WaybillList.ToString());
+            Console.WriteLine(factory.waybillList.ToString());
 
         }
         public void GetCostOfAll()
         {
-            for (int i=0; i< factory.WaybillList.Count; i++)
+            for (int i=0; i< factory.waybillList.Count; i++)
             {
-                Console.WriteLine(factory.WaybillList[i].ToString() + "\nЗатраты: " + factory.GetCost(factory.WaybillList[i]));
+                Console.WriteLine(factory.waybillList[i].ToString() + "\nЗатраты: " + factory.GetCost(factory.waybillList[i]));
             }
             Console.WriteLine("Итого: " + factory.GetFullCost());
         }

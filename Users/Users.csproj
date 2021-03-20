@@ -42,16 +42,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin.cs" />
+    <Compile Include="Driver.cs" />
+    <Compile Include="IOperator.cs" />
     <Compile Include="Operator.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="UserList.cs" />
-    <Compile Include="UserWorker.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Accounting\Accounting.csproj">
       <Project>{da7233b1-eb61-4c09-9e1b-dbe9f2b518f5}</Project>
       <Name>Accounting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Enterprice\WayBills.csproj">
+      <Project>{71DFAA0A-F9F9-4ACC-90D5-27BD8ADA27AF}</Project>
+      <Name>WayBills</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Kurs\Cars.csproj">
+      <Project>{EF255B74-E920-4FB9-909A-63A1551B800E}</Project>
+      <Name>Cars</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

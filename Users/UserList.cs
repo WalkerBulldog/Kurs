@@ -3,12 +3,14 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Accounting;
 
 namespace Users
 {
     public class UserList
     {
         List<User> List = new List<User>();
+        Enterprice Enterprice = new Enterprice();
         public UserList()
         {
 
