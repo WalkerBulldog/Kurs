@@ -10,7 +10,6 @@ namespace Users
     public class UserList
     {
         List<User> List = new List<User>();
-        Enterprice Enterprice = new Enterprice();
         public UserList()
         {
 

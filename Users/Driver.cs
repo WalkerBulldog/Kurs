@@ -16,7 +16,7 @@ namespace Users
         }
 
         public override string GetInfo()
-        {
+        {           
             string info = Enterprice.GetInfo(UserName);
             if (info == null || info.Count() == 0)
                 return "Инофрмации о вас не обнаружено.";

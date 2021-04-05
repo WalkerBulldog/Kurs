@@ -11,7 +11,7 @@ namespace Drivers
     {
         public int Id { get; }
         public string Name { get; }
-        private ClassOfDriver qualification { get; }
+        public ClassOfDriver qualification { get; }
 
 
         public Driver(int Id, string Name, ClassOfDriver Qualification)
@@ -20,6 +20,17 @@ namespace Drivers
             this.Name = Name;
             this.qualification = Qualification;
         }
+        public Driver(int Id, string Name, string Qualification)
+        {
+            this.Id = Id;
+            this.Name = Name;
+            this.qualification = (ClassOfDriver)Enum.Parse(typeof(ClassOfDriver), Qualification);
+        }
+
+        public Driver()
+        {
+        }
+
         public double GetDistance(WaybillList WBList)
         {
             return WBList.GetFullDistanceForDriverId(Id);

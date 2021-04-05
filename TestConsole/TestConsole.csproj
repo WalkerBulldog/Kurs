@@ -51,9 +51,9 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Accounting\Accounting.csproj">
+    <ProjectReference Include="..\Accounting\ORM.csproj">
       <Project>{da7233b1-eb61-4c09-9e1b-dbe9f2b518f5}</Project>
-      <Name>Accounting</Name>
+      <Name>ORM</Name>
     </ProjectReference>
     <ProjectReference Include="..\Drivers\Drivers.csproj">
       <Project>{8d293047-39ca-4c86-9bba-f23e23adf03a}</Project>

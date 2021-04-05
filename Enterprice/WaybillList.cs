@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace WayBills
 {
-    public class WaybillList
+    public class WaybillList : IEnumerable
     {
         private List<Waybill> Waybills = new List<Waybill>();
         public Waybill this[int index] => Waybills[index];
@@ -91,6 +92,11 @@ namespace WayBills
             foreach (Waybill wb in Waybills)
                 str.Append( "\n" + wb.ToString());
             return str.ToString();
+        }
+
+        public IEnumerator GetEnumerator()
+        {
+            return ((IEnumerable)Waybills).GetEnumerator();
         }
     }
 }

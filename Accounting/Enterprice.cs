@@ -6,6 +6,8 @@ using System.Threading.Tasks;
 using Cars;
 using WayBills;
 using Drivers;
+using System.Collections;
+using MySql.Data.MySqlClient;
 
 namespace Accounting
 {
@@ -60,7 +62,7 @@ namespace Accounting
 
         public double GetCost(Waybill WB)
         {
-            return WB.Distance * carList.GetCar(WB.CarId).GasUse * fuelCost + driversList.GetDriver(WB.DriverId).GetSalary(WB) + carList.GetCar(WB.CarId).Service(WB.Distance);
+            return WB.Distance / 100 * carList.GetCar(WB.CarId).GasUse * fuelCost + driversList.GetDriver(WB.DriverId).GetSalary(WB) + carList.GetCar(WB.CarId).Service(WB.Distance);
         }
         public double GetProfit(Waybill WB) => GetCost(WB) * 1.2;
         public double GetFullCost()
@@ -70,18 +72,20 @@ namespace Accounting
                 cost += GetCost(waybillList[i]);
             return cost;
         }
-        public string GetMostProfitDriver(DateTime dateBottom, DateTime dateUp, Car car)
+        public string GetMostProfitDriver(DateTime dateBottom, DateTime dateUp, string car)
         {
-            List<Waybill> WBList = waybillList.GetWaybills(dateBottom, dateUp);
+            WaybillList tmp = waybillList;
+            IEnumerable newList = from Waybill WB in tmp
+                                  where WB.Date > dateBottom && WB.Date < dateUp && car == carList.GetCar(WB.CarId).TypeOfCar
+                                  select WB;
             List<double> ProfitList = new List<double>();
-            foreach (Waybill WB in WBList)
-                if (car.TypeOfCar != carList.GetCar(WB.CarId).TypeOfCar)
-                    WBList.Remove(WB);
-            foreach (Waybill WB in WBList)  
+            foreach (Waybill WB in newList)
+                ProfitList.Add(GetProfit(WB));                  
+            foreach (Waybill WB in newList)
                 ProfitList.Add(GetProfit(WB));
             return driversList.GetDriver(ProfitList.IndexOf(ProfitList.Max())).ToString() + " " + ProfitList.Max();
         }
-        
+
         public string GetInfo(string UserName)
         {
             string driverInfo = driversList.GetDriver(UserName).ToString();

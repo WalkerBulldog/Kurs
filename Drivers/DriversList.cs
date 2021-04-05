@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Drivers
 {
-    public class DriversList
+    public class DriversList : IEnumerable<Driver>
     {
         private List<Driver> List = new List<Driver>();
 
@@ -47,14 +47,14 @@ namespace Drivers
             return str;
         }
 
-        public bool MoveNext()
+        public IEnumerator<Driver> GetEnumerator()
         {
-            throw new NotImplementedException();
+            return ((IEnumerable<Driver>)List).GetEnumerator();
         }
 
-        public void Reset()
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            throw new NotImplementedException();
+            return ((IEnumerable)List).GetEnumerator();
         }
     }
 }

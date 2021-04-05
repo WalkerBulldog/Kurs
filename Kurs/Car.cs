@@ -13,9 +13,9 @@ namespace Cars
         public string TypeOfCar { get; }
         public double GasUse { get; }
        
-        public Car(int id, string Mark, double GasUse)
+        public Car(int id, string TypeOfCar, double GasUse)
         {
-            this.TypeOfCar = Mark;
+            this.TypeOfCar = TypeOfCar;
             this.GasUse = GasUse;
             this.id = id;
         }
@@ -25,6 +25,5 @@ namespace Cars
         }
         public abstract double Service(double Distance);
         public override abstract string ToString();
-
     }
 }
