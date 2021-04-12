@@ -45,14 +45,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="ConnectorToCars.cs" />
     <Compile Include="ConnectorToDrivers.cs" />
+    <Compile Include="ConnectorToWaybills.cs" />
     <Compile Include="Factory.cs" />
-    <Compile Include="Enterprice.cs" />
-    <Compile Include="DBConnection.cs" />
     <Compile Include="Connector.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Connection\Connection.csproj">
+      <Project>{f0ff8ebd-f694-4828-bfa7-51fd236f289f}</Project>
+      <Name>Connection</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Drivers\Drivers.csproj">
       <Project>{8d293047-39ca-4c86-9bba-f23e23adf03a}</Project>
       <Name>Drivers</Name>

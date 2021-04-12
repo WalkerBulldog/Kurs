@@ -20,6 +20,12 @@ namespace Drivers
             this.Name = Name;
             this.qualification = Qualification;
         }
+        public Driver(string Name, ClassOfDriver Qualification)
+        {
+            Id = 0;
+            this.Name = Name;
+            this.qualification = Qualification;
+        }
         public Driver(int Id, string Name, string Qualification)
         {
             this.Id = Id;
@@ -43,7 +49,7 @@ namespace Drivers
         {
             return 100 * WB.Distance * (double)qualification;
         }
-        public override string ToString() => Name + ", qualification - " + qualification.ToString();
+        public override string ToString() => Name + ", классность - " + qualification.ToString();
 
     }
 }

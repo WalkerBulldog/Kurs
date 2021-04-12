@@ -9,7 +9,7 @@ using MySql.Data.MySqlClient;
 using Drivers;
 
 
-namespace Accounting
+namespace ORM
 {
     /// <summary>
     /// Коллекция любых объектов (генерик).

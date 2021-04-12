@@ -12,6 +12,10 @@ namespace Cars
         {
             this.Capacity = Capacity;
         }
+        public Truck(double GasUse, double Capacity) : base("TRUCK", GasUse)
+        {
+            this.Capacity = Capacity;
+        }
 
         public double Capacity { get; }
         public override double Service(double Distance)

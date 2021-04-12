@@ -55,6 +55,10 @@
       <Project>{da7233b1-eb61-4c09-9e1b-dbe9f2b518f5}</Project>
       <Name>ORM</Name>
     </ProjectReference>
+    <ProjectReference Include="..\AllAccounting\AllAccounting.csproj">
+      <Project>{44f6b1f2-441f-4e8f-815a-f56ae9676fc5}</Project>
+      <Name>AllAccounting</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Drivers\Drivers.csproj">
       <Project>{8d293047-39ca-4c86-9bba-f23e23adf03a}</Project>
       <Name>Drivers</Name>

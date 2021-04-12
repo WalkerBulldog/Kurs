@@ -19,6 +19,11 @@ namespace Cars
             this.GasUse = GasUse;
             this.id = id;
         }
+        public Car(string TypeOfCar, double GasUse)
+        {
+            this.TypeOfCar = TypeOfCar;
+            this.GasUse = GasUse;
+        }
         public double GetDistance(WaybillList WBList)
         {
             return WBList.GetFullDistanceForCarId(id);

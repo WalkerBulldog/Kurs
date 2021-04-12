@@ -16,6 +16,11 @@ namespace Cars
             this.PassCapacity = PassCapacity;
             this.Capacity = Capacity;
         }
+        public Bus(double GasUse, double Capacity, int PassCapacity) : base("BUS", GasUse)
+        {
+            this.PassCapacity = PassCapacity;
+            this.Capacity = Capacity;
+        }
         public override double Service(double Distance)
         {
             if (Distance <= 100)

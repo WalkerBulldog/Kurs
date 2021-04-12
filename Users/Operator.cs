@@ -3,12 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Cars;
-using WayBills;
+
 
 namespace Users
 {
-    public class Operator : User, IOperator
+    public class Operator : User
     {
         public override string Status { get { return "Operator"; } }
 
@@ -16,34 +15,28 @@ namespace Users
             (Login, PassWord, UserName)
         {
         }
-        public bool AddWayBill(string driverName, double distance, DateTime dateTime, int carid, int driverid)
+        public Operator(int id, string Login, string PassWord, string UserName) : base
+           (id, Login, PassWord, UserName)
         {
-            return Enterprice.AddWayBill(driverName, distance, dateTime, carid, driverid);
         }
-        public bool AddBus(int id, double GasUse, double Capacity, int PassCapacity)
+        public bool AddWayBill(double distance, DateTime dateTime, int carid, int driverid)
         {
-            return Enterprice.AddBus(id, GasUse, PassCapacity, Capacity);
+            return Enterprice.AddWayBill(distance, dateTime, carid, driverid);
         }
-        public bool AddTruck(int id, double GasUse, double Capacity)
+        public bool AddBus(double GasUse, double Capacity, int PassCapacity)
         {
-            return Enterprice.AddTruck(id, GasUse, Capacity);
+            return Enterprice.AddBus(GasUse, PassCapacity, Capacity);
         }
-        public bool AddMiniBus(int id, double GasUse, int PassCapacity)
+        public bool AddTruck(double GasUse, double Capacity)
         {
-            return Enterprice.AddMiniBus(id, GasUse, PassCapacity);
+            return Enterprice.AddTruck(GasUse, Capacity);
         }
+        public bool AddVan(double GasUse, int PassCapacity)
+        {
+            return Enterprice.AddVan(GasUse, PassCapacity);
+        }      
 
-        public bool RemoveCar(Car car)
-        {
-            return Enterprice.RemoveCar(car);
-        }
-
-        public bool RemoveWayBill(Waybill wb)
-        {
-            return Enterprice.RemoveWayBill(wb);
-        }
-
-        public override string GetInfo()
+        public override string ToString()
         {
             return UserName + ", " + Status;
         }

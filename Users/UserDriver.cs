@@ -3,19 +3,22 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using Accounting;
+using AllAccounting;
 
 namespace Users
 {
-    public class Driver : User
+    public class UserDriver : User
     {
 
         public override string Status { get { return "Driver"; } }
-        public Driver(string Login, string PassWord, string UserName) : base(Login, PassWord, UserName)
+        public UserDriver(string Login, string PassWord, string UserName) : base(Login, PassWord, UserName)
+        {
+        }
+        public UserDriver(int id, string Login, string PassWord, string UserName) : base(id, Login, PassWord, UserName)
         {
         }
 
-        public override string GetInfo()
+        public override string ToString()
         {           
             string info = Enterprice.GetInfo(UserName);
             if (info == null || info.Count() == 0)

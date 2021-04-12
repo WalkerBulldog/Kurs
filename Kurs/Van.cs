@@ -7,16 +7,20 @@ using WayBills;
 
 namespace Cars
 {
-    public class MiniBus : Car, IPassangers
+    public class Van : Car, IPassangers
     {
-        private readonly int passcapacity;
-        int IPassangers.PassCapacity =>  passcapacity;
+        public int PassCapacity { get; }
 
 
-        public MiniBus(int id, double GasUse, int passcapacity)
+        public Van(int id, double GasUse, int passcapacity)
             : base(id, "VAN", GasUse)
         {
-            this.passcapacity = passcapacity;
+            this.PassCapacity = passcapacity;
+        }
+        public Van(double GasUse, int passcapacity)
+           : base("VAN", GasUse)
+        {
+            this.PassCapacity = passcapacity;
         }
         public override double Service(double Distance)
         {
@@ -29,7 +33,7 @@ namespace Cars
         }
         public override string ToString()
         {
-            return TypeOfCar + ", " + GasUse + "л / 100 км, " + passcapacity + "чел.";
+            return TypeOfCar + ", " + GasUse + "л / 100 км, " + PassCapacity + "чел.";
         }
     }
 }

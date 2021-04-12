@@ -27,24 +27,24 @@ namespace Drivers
         }
         public Driver GetDriver(int id)
         {
-            foreach (Driver driver in List)
-                if (driver.Id == id)
-                    return driver;
-            return null;
+            IEnumerable<Driver> drivers = (from Driver dr in List
+                                                 where dr.Id == id
+                                                 select dr);
+            return drivers.First();
         }
         public Driver GetDriver(string Name)
         {
-            foreach (Driver driver in List)
-                if (driver.Name == Name)
-                    return driver;
-            return null;
+            IEnumerable<Driver> drivers = (from Driver dr in List
+                                                where dr.Name == Name
+                                                select dr);
+            return drivers.First();
         }
         public override string ToString()
         {
-            string str = "";
+            StringBuilder str = new StringBuilder("");
             foreach (Driver wb in List)
-                str += wb.ToString();
-            return str;
+                str.Append(wb.ToString() + "\n");
+            return str.ToString();
         }
 
         public IEnumerator<Driver> GetEnumerator()

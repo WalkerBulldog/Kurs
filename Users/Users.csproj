@@ -43,24 +43,32 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Admin.cs" />
-    <Compile Include="Driver.cs" />
-    <Compile Include="IOperator.cs" />
+    <Compile Include="ConnectorToUsers.cs" />
+    <Compile Include="UnsignedUser.cs" />
+    <Compile Include="UserDriver.cs" />
     <Compile Include="Operator.cs" />
     <Compile Include="User.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="UserList.cs" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\Accounting\ORM.csproj">
-      <Project>{da7233b1-eb61-4c09-9e1b-dbe9f2b518f5}</Project>
-      <Name>ORM</Name>
+    <ProjectReference Include="..\AllAccounting\AllAccounting.csproj">
+      <Project>{44f6b1f2-441f-4e8f-815a-f56ae9676fc5}</Project>
+      <Name>AllAccounting</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Connection\Connection.csproj">
+      <Project>{f0ff8ebd-f694-4828-bfa7-51fd236f289f}</Project>
+      <Name>Connection</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Drivers\Drivers.csproj">
+      <Project>{8d293047-39ca-4c86-9bba-f23e23adf03a}</Project>
+      <Name>Drivers</Name>
     </ProjectReference>
     <ProjectReference Include="..\Enterprice\WayBills.csproj">
-      <Project>{71DFAA0A-F9F9-4ACC-90D5-27BD8ADA27AF}</Project>
+      <Project>{71dfaa0a-f9f9-4acc-90d5-27bd8ada27af}</Project>
       <Name>WayBills</Name>
     </ProjectReference>
     <ProjectReference Include="..\Kurs\Cars.csproj">
-      <Project>{EF255B74-E920-4FB9-909A-63A1551B800E}</Project>
+      <Project>{ef255b74-e920-4fb9-909a-63a1551b800e}</Project>
       <Name>Cars</Name>
     </ProjectReference>
   </ItemGroup>
