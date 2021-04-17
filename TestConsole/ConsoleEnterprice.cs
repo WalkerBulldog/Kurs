@@ -102,6 +102,7 @@ namespace TestConsole
         }
         public void ShowAllInfo()
         {
+            factory.UpdateALL();
             Console.WriteLine("Список водителей: ");
             Console.WriteLine(factory.driversList.ToString());
             Console.WriteLine("Список машин: ");

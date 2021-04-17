@@ -46,15 +46,16 @@ namespace ORM
             connection.Command.Parameters.Clear();
             connection.Command.CommandText = "select * from путевые_листы where ID=@wayID";
             connection.Command.Parameters.AddWithValue("@wayID", id);
+            Waybill wb = null;
             using (MySqlDataReader reader = connection.Command.ExecuteReader())
             {
                 if (reader.HasRows) // если есть данные
                 {
                     while(reader.Read())
-                        return new Waybill((int)reader.GetValue(0),(double)reader.GetValue(3),(DateTime)reader.GetValue(4),(int)reader.GetValue(1), (int)reader.GetValue(2));
+                        wb = new Waybill((int)reader.GetValue(0),(double)reader.GetValue(3),(DateTime)reader.GetValue(4),(int)reader.GetValue(1), (int)reader.GetValue(2));
                 }
             }
-            return null;
+            return wb;
 
 
 

@@ -20,7 +20,7 @@ namespace ORM
             connection.Command.Parameters.Clear();
             connection.Command.CommandText = "insert into водители (ФИО, Классность) values (@FIO, @qual)";
             connection.Command.Parameters.AddWithValue("@FIO", driver.Name);
-            connection.Command.Parameters.AddWithValue("@qual", driver.qualification.ToString());
+            connection.Command.Parameters.AddWithValue("@qual", driver.Qualification.ToString());
             int result = connection.Command.ExecuteNonQuery();       
             if (result == -1)
                 return null;
@@ -79,7 +79,7 @@ namespace ORM
             connection.Command.CommandText = "update водители set ФИО=@FIO, Классность=@qual where ID=@drivID";
             connection.Command.Parameters.AddWithValue("@drivID", newDriver.Id);
             connection.Command.Parameters.AddWithValue("@FIO", newDriver.Name);
-            connection.Command.Parameters.AddWithValue("@qual", newDriver.qualification.ToString());
+            connection.Command.Parameters.AddWithValue("@qual", newDriver.Qualification.ToString());
             connection.Command.ExecuteNonQuery();
             return Get(newDriver.Id);
         }

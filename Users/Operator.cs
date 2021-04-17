@@ -34,8 +34,11 @@ namespace Users
         public bool AddVan(double GasUse, int PassCapacity)
         {
             return Enterprice.AddVan(GasUse, PassCapacity);
-        }      
-
+        }
+        public List<string> GetWaybills(string UserName)
+        {
+            return Enterprice.GetWaybillsByUserName(UserName);
+        }
         public override string ToString()
         {
             return UserName + ", " + Status;

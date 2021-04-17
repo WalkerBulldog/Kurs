@@ -57,7 +57,7 @@ namespace WayBills
         }
         public override string ToString()
         {
-            return "Водитель " + Id + "\nДистанция: " + Distance + "\nДата: " + Date.ToString() + "\nНомер машины: " + CarId;
+            return "\nДистанция: " + Distance + " Дата: " + Date.Day +"/" + Date.Month +"/" + Date.Year + " Машина: " + CarId;
         }
     }
 }

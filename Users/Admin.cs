@@ -47,17 +47,13 @@ namespace Users
             return Enterprice.Delete(car);
         }
 
-        public bool Remove(Waybill wb)
+        public bool Remove(Waybill wb)  
         {
             return Enterprice.Delete(wb);
         }
         public bool Remove(Drivers.Driver driver)
         {
             return Enterprice.Delete(driver);
-        }
-        private User AddDriver(string login, string password, string userName)
-        {
-            return connector.Create(new UserDriver(login, password, userName));
         }
         public User AddOperator(string login, string password, string userName)
         {
@@ -86,6 +82,26 @@ namespace Users
         public Drivers.Driver Update(Drivers.Driver driver)
         {
             return Enterprice.Update(driver);
+        }
+        public string GetMostProfitDrivers(DateTime bottom, DateTime up, string carType)
+        {
+            return Enterprice.GetMostProfitDriver(bottom, up, carType);
+        }
+        public string GetCost(Waybill wb)
+        {
+            return Enterprice.GetCost(wb).ToString();
+        }
+        public string GetFullCost()
+        {
+            return Enterprice.GetFullCost().ToString();
+        }
+        public string GetProfit(Waybill wb)
+        {
+            return Enterprice.GetProfit(wb).ToString();
+        }
+        public string GetFullProfit()
+        {
+            return Enterprice.GetFullProfit().ToString();
         }
     }
 }

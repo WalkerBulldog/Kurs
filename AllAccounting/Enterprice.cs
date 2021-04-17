@@ -27,9 +27,6 @@ namespace AllAccounting
         }
         public Enterprice()
         {
-            driversList = (DriversList)DBDrivers.GetAll();
-            carList = (CarList)DBCars.GetAll();
-            waybillList = (WaybillList)DBWaybills.GetAll();
         }
         public bool AddDriver(string fio, ClassOfDriver qualification)
         {
@@ -83,7 +80,7 @@ namespace AllAccounting
         {
             return WB.Distance / 100 * carList.GetCar(WB.CarId).GasUse * fuelCost + driversList.GetDriver(WB.DriverId).GetSalary(WB) + carList.GetCar(WB.CarId).Service(WB.Distance);
         }
-        public double GetProfit(Waybill WB) => GetCost(WB) * 1.2;
+        public double GetProfit(Waybill WB) => GetCost(WB) * 0.2;
         public double GetFullCost()
         {
             waybillList = (WaybillList)DBWaybills.GetAll();
@@ -92,13 +89,37 @@ namespace AllAccounting
                 cost += GetCost(waybillList[i]);
             return cost;
         }
+        public double GetFullProfit() => GetFullCost() * 0.2;
         public string GetMostProfitDriver(DateTime dateBottom, DateTime dateUp, string car)
         {
-            IEnumerable newList = from Waybill WB in (WaybillList)DBWaybills.GetAll()
-                                  where WB.Date > dateBottom && WB.Date < dateUp && car == carList.GetCar(WB.CarId).TypeOfCar
-                                  select GetProfit(WB);
-            List<double> ProfitList = (List<double>)newList;                  
-            return driversList.GetDriver(ProfitList.IndexOf(ProfitList.Max())).ToString() + " " + ProfitList.Max();
+            //List<double> ProfitList = (List<double>)from Waybill WB in (WaybillList)DBWaybills.GetAll()
+            //                      where WB.Date > dateBottom && WB.Date < dateUp && car == carList.GetCar(WB.CarId).TypeOfCar
+            //                      select GetProfit(WB);                  
+            //return driversList.GetDriver(ProfitList.IndexOf(ProfitList.Max())).ToString() + " " + ProfitList.Max();
+            
+            List<Waybill> list = (List<Waybill>)from Waybill WB in (WaybillList)DBWaybills.GetAll()
+                                                    where WB.Date > dateBottom && WB.Date < dateUp && car == carList.GetCar(WB.CarId).TypeOfCar
+                                                    select WB;
+            if (list == null)
+                return "Данных не обнаружено!";
+            Dictionary<int, double> drivers = new Dictionary<int, double>(list.Count);
+            drivers.Add(list[0].DriverId, GetProfit(list[0]));
+            for (int i = 1; i < list.Count; i++)
+            {
+                bool itsNew = true;
+                foreach (var driver in drivers)
+                {
+                    if (list[i].DriverId == driver.Key)
+                    {
+                        itsNew = false;
+                        drivers[driver.Key] += GetProfit(list[i]);
+                        break;
+                    }
+                }
+                if (itsNew)
+                    drivers.Add(list[i].DriverId, GetProfit(list[i]));
+            }
+            return driversList.GetDriver(drivers.Where(x => x.Value == drivers.Values.Max()).FirstOrDefault().Key).ToString() + " " + drivers.Values.Max();
         }
 
         public string GetInfo(string UserName)
@@ -113,6 +134,25 @@ namespace AllAccounting
         public Car GetCar(int id) => DBCars.Get(id);
         public Driver GetDriver(int id) => DBDrivers.Get(id);
         public Waybill GetWaybill(int id) => DBWaybills.Get(id);
+        public void UpdateALL()
+        {
+            driversList = (DriversList)DBDrivers.GetAll();
+            carList = (CarList)DBCars.GetAll();
+            waybillList = (WaybillList)DBWaybills.GetAll(); 
+        }
+        public List<string> GetWaybillsByUserName(string userName)
+        {
+            waybillList = (WaybillList)DBWaybills.GetAll();
+            driversList = (DriversList)DBDrivers.GetAll();
+            IEnumerable<int> id = (from Driver dr in driversList
+                          where dr.Name == userName
+                          select dr.Id).ToList();
+            List<string> list = (List<string>)(from Waybill wb in waybillList
+                                where wb.DriverId == id.First()
+                                select wb.ToString()).ToList<string>();
+            return list;
+        }
+
         public Car Update(Car car)
         {
             return DBCars.Update(car);

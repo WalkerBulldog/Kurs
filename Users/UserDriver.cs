@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using AllAccounting;
+using WayBills;
 
 namespace Users
 {
@@ -25,5 +26,9 @@ namespace Users
                 return "Инофрмации о вас не обнаружено.";
             return Status + " " + info;
         }
-    }
+        public List<string> GetWaybills()
+        {
+            return Enterprice.GetWaybillsByUserName(UserName);
+        }
+     }
 }

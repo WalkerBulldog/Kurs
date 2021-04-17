@@ -42,6 +42,7 @@ namespace ORM
             connection.Command.Parameters.Clear();
             connection.Command.CommandText = "select * from users where id=@id";
             connection.Command.Parameters.AddWithValue("@id", id);
+            User user = null;
             using (MySqlDataReader reader = connection.Command.ExecuteReader())
             {
                 if (reader.HasRows) // если есть данные
@@ -49,30 +50,33 @@ namespace ORM
                     while (reader.Read())
                     {
                         if ((string)reader.GetValue(3) == "D")
-                            return new UserDriver((int)reader.GetValue(0), (string)reader.GetValue(1), (string)reader.GetValue(2), (string)reader.GetValue(4));
+                            user = new UserDriver((int)reader.GetValue(0), (string)reader.GetValue(1), (string)reader.GetValue(2), (string)reader.GetValue(4));
                         else if ((string)reader.GetValue(3) == "O")
-                            return new Operator((int)reader.GetValue(0), (string)reader.GetValue(1), (string)reader.GetValue(2), (string)reader.GetValue(4));
+                            user = new Operator((int)reader.GetValue(0), (string)reader.GetValue(1), (string)reader.GetValue(2), (string)reader.GetValue(4));
                         else if ((string)reader.GetValue(3) == "A")
-                            return new Admin((int)reader.GetValue(0), (string)reader.GetValue(1), (string)reader.GetValue(2), (string)reader.GetValue(4));
+                            user = new Admin((int)reader.GetValue(0), (string)reader.GetValue(1), (string)reader.GetValue(2), (string)reader.GetValue(4));
                     }
                 }
             }
-            return null;
+            return user;
         }
         public int UserExists(string login, string password)
         {
             connection.Command.Parameters.Clear();
-            connection.Command.CommandText = "select * from users where login=@login, password=@password";
+            connection.Command.CommandText = "select * from users where login=@login and password=@password";
             connection.Command.Parameters.AddWithValue("@login", login);
             connection.Command.Parameters.AddWithValue("@password", password);
+            int id = 0;
             using (MySqlDataReader reader = connection.Command.ExecuteReader())
             {
                 if (reader.HasRows) // если есть данные
                 {
                     reader.Read();
-                    return (int)reader.GetValue(0);              }
-                return 0;
+                    id = (int)reader.GetValue(0);             
+                }
+                
             }
+            return id;
         }
 
         public IEnumerable<User> GetAll()
