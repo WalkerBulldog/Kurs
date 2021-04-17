@@ -41,9 +41,9 @@ namespace Drivers
         {
             return WBList.GetFullDistanceForDriverId(Id);
         }
-        public double GetSalary(WaybillList WBList)
+        public double GetSalary(double distance)
         {
-            return 100 * GetDistance(WBList) * (double)Qualification;
+            return 100 * distance * (double)Qualification;
         }
         public double GetSalary(Waybill WB)
         {

@@ -41,19 +41,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Bus.cs" />
-    <Compile Include="Car.cs" />
-    <Compile Include="CarList.cs" />
-    <Compile Include="ClassOfDriver.cs" />
-    <Compile Include="Driver.cs" />
-    <Compile Include="DriversList.cs" />
     <Compile Include="Enterprice.cs" />
-    <Compile Include="ICargo.cs" />
-    <Compile Include="IPassangers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Truck.cs" />
-    <Compile Include="Van.cs" />
-    <Compile Include="WaybillList.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Accounting\ORM.csproj">

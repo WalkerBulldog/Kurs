@@ -1,4 +1,4 @@
-﻿using System;
+﻿    using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -10,12 +10,6 @@ namespace ORM
 {
     public class ConnectorToCars : Connector<Car>
     {
-        private int GetLastId()
-        {
-            connection.Command.Parameters.Clear();
-            connection.Command.CommandText = "select MAX(Id) as Id from общиемашины";
-            return (int)connection.Command.ExecuteScalar();
-        }
         private int CheckCarType(Car car)
         {
             if (car.GetType() == typeof(Truck))
@@ -26,7 +20,7 @@ namespace ORM
                 return 3;
             return 0;
         }
-        public override Car Create(Car car)
+        public override IEnumerable<Car> Create(Car car)
         {
             int type = CheckCarType(car);
             if (type == 1)
@@ -38,7 +32,7 @@ namespace ORM
             return null;
         }
 
-        private Car CreateTruck(Truck truck)
+        private CarList CreateTruck(Truck truck)
         {
             connection.Command.Parameters.Clear();
             connection.Command.CommandText = "INSERT INTO общиемашины(Тип,Расход,Грузоподъемность) VALUES(@Tip,@use,@cap)";
@@ -48,9 +42,9 @@ namespace ORM
             int result = connection.Command.ExecuteNonQuery();
             if (result == 0)
                 return null;
-            return Get(GetLastId());
+            return (CarList)GetAll();
         }
-        private Car CreateBus(Bus bus)
+        private IEnumerable<Car> CreateBus(Bus bus)
         {
             connection.Command.Parameters.Clear();
             connection.Command.CommandText = "INSERT INTO общиемашины(Тип,Расход,Грузоподъемность,Пассажироемкость) VALUES(@tip,@useg,@capp,@pass)";
@@ -61,9 +55,9 @@ namespace ORM
             int result = connection.Command.ExecuteNonQuery();
             if (result == 0)
                 return null;
-            return Get(GetLastId());
+            return GetAll();
         }
-        private Car CreateVan(Van van)
+        private IEnumerable<Car> CreateVan(Van van)
         {
             connection.Command.Parameters.Clear();
             connection.Command.CommandText = "INSERT INTO общиемашины(Тип,Расход,Пассажироемкость) VALUES(@tip,@useg,@pass)";
@@ -73,18 +67,16 @@ namespace ORM
             int result = connection.Command.ExecuteNonQuery();
             if (result == 0)
                 return null;
-            return Get(GetLastId());
+            return (CarList)GetAll();
         }
 
-        public override bool Delete(int id)
+        public override IEnumerable<Car> Delete(int id)
         {
             connection.Command.Parameters.Clear();
             connection.Command.CommandText = "delete from общиемашины where ID=@carID";
             connection.Command.Parameters.AddWithValue("@carID", id);
-            int result = connection.Command.ExecuteNonQuery();
-            if (result == 0)
-                return false;
-            return true;
+            connection.Command.ExecuteNonQuery();
+            return (CarList)GetAll();
         }
 
         public override Car Get(int id)
@@ -137,7 +129,7 @@ namespace ORM
             return list;
         }
 
-        public override Car Update(Car car)
+        public override IEnumerable<Car> Update(Car car)
         {
             int type = CheckCarType(car);
             if (type == 1)
@@ -148,7 +140,7 @@ namespace ORM
                 return UpdateBus((Bus)car);
             return null;
         }
-        private Car UpdateTruck(Truck truck)
+        private IEnumerable<Car> UpdateTruck(Truck truck)
         {
             connection.Command.Parameters.Clear();
             connection.Command.CommandText = "update общиемашины set Тип=@Tipp,Расход = @uses,Грузоподъемность=@caps where Id=@truckId";
@@ -159,9 +151,9 @@ namespace ORM
             int result = connection.Command.ExecuteNonQuery();
             if (result == 0)
                 return null;
-            return Get(GetLastId());
+            return GetAll();
         }
-        private Car UpdateBus(Bus bus)
+        private IEnumerable<Car> UpdateBus(Bus bus)
         {
             connection.Command.Parameters.Clear();
             connection.Command.CommandText = "update общиемашины set Тип=@Tippb,Расход = @usesb,Грузоподъемность=@capsb, Пассажироемкость=@pcapb where Id=@busId";
@@ -173,9 +165,9 @@ namespace ORM
             int result = connection.Command.ExecuteNonQuery();
             if (result == 0)
                 return null;
-            return Get(GetLastId());
+            return GetAll();
         }
-        private Car UpdateVan(Van van)
+        private IEnumerable<Car> UpdateVan(Van van)
         {
             connection.Command.Parameters.Clear();
             connection.Command.CommandText = "update общиемашины set Тип=@Tipvp,Расход = @usesv,Пассажироемкость=@passv where Id=@vanId";
@@ -186,7 +178,7 @@ namespace ORM
             int result = connection.Command.ExecuteNonQuery();
             if (result == 0)
                 return null;
-            return Get(GetLastId());
+            return GetAll();
         }
     }
 }

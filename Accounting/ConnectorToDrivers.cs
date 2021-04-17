@@ -10,32 +10,23 @@ namespace ORM
 {
     public class ConnectorToDrivers : Connector<Driver>
     { 
-        private int GetLastId()
-        {
-            connection.Command.CommandText = "select MAX(Id) as Id from водители";
-            return (int)connection.Command.ExecuteScalar();
-        }
-        public override Driver Create(Driver driver)
+        public override IEnumerable<Driver> Create(Driver driver)
         {
             connection.Command.Parameters.Clear();
             connection.Command.CommandText = "insert into водители (ФИО, Классность) values (@FIO, @qual)";
             connection.Command.Parameters.AddWithValue("@FIO", driver.Name);
             connection.Command.Parameters.AddWithValue("@qual", driver.Qualification.ToString());
-            int result = connection.Command.ExecuteNonQuery();       
-            if (result == -1)
-                return null;
-            return Get(GetLastId());
+            connection.Command.ExecuteNonQuery();
+            return GetAll();
         }
 
-        public override bool Delete(int id)
+        public override IEnumerable<Driver> Delete(int id)
         {
             connection.Command.Parameters.Clear();
             connection.Command.CommandText = "delete from водители where ID=@drID";
             connection.Command.Parameters.AddWithValue("@drID", id);
-            int result = connection.Command.ExecuteNonQuery();
-            if (result == -1)
-                return false;
-            return true;
+            connection.Command.ExecuteNonQuery();
+            return GetAll();
         }
 
         public override Driver Get(int id)
@@ -52,9 +43,21 @@ namespace ORM
                 }
             }
             return null;
-            
-            
-
+        }
+        public Driver Get(string name)
+        {
+            connection.Command.Parameters.Clear();
+            connection.Command.CommandText = "select * from водители where ФИО=@name";
+            connection.Command.Parameters.AddWithValue("@name", name);
+            using (MySqlDataReader reader = connection.Command.ExecuteReader())
+            {
+                if (reader.HasRows) // если есть данные
+                {
+                    while (reader.Read())
+                        return new Driver((int)reader.GetValue(0), (string)reader.GetValue(1), (string)reader.GetValue(2));
+                }
+            }
+            return null;
         }
 
         public override IEnumerable<Driver> GetAll()
@@ -71,7 +74,7 @@ namespace ORM
             }
             return list;
         }
-        public override Driver Update(Driver newDriver)
+        public override IEnumerable<Driver> Update(Driver newDriver)
         {
             connection.Command.Parameters.Clear();
             if (newDriver.Id == 0)
@@ -81,7 +84,7 @@ namespace ORM
             connection.Command.Parameters.AddWithValue("@FIO", newDriver.Name);
             connection.Command.Parameters.AddWithValue("@qual", newDriver.Qualification.ToString());
             connection.Command.ExecuteNonQuery();
-            return Get(newDriver.Id);
+            return GetAll();
         }
     }
 }

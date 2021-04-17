@@ -14,9 +14,9 @@ namespace ORM
         private protected DBConnection connection = DBConnection.Instance;
         private protected ObjectFabric<TEntity> fabric = new ObjectFabric<TEntity>();
         public abstract IEnumerable<TEntity> GetAll();
-        public abstract TEntity Create(TEntity entity);
-        public abstract bool Delete(int id);
-        public abstract TEntity Update(TEntity entity);
+        public abstract IEnumerable<TEntity> Create(TEntity entity);
+        public abstract IEnumerable<TEntity> Delete(int id);
+        public abstract IEnumerable<TEntity> Update(TEntity entity);
         public abstract TEntity Get(int id);
         public void Dispose()
         {
